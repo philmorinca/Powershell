@@ -1,11 +1,5 @@
-# iwr https://... | iex
-Clear-Host
-$ErrorActionPreference = 'Stop'
-Set-ExecutionPolicy Bypass -Scope Process
-
-$ISODownloadPath = "C:\Win10LTSC.iso"
-
-Start-BitsTransfer -Source "https://r2.philmorin.net/Win10LTSC.$((Get-WinSystemLocale).Name).iso" -Destination $ISODownloadPath
+$ISOs = Get-ChildItem -Path C:\Users\*.iso -Recurse
+$ISODownloadPath = $($ISOs | Select-Object -First 1 ).FullPath
 Mount-DiskImage -ImagePath $ISODownloadPath -PassThru
 
 $drive = Get-WMIObject Win32_Volume | Where-Object { $_.Label -like 'CES_X64*'}
@@ -19,5 +13,5 @@ if ($drive) {
 
 
     Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows NT\CurrentVersion" -Name "EditionID" -Value "EnterpriseS" -WhatIf
-    & "$drive\setup.exe" /auto upgrade /compat ignorewarning /EULA accept
+
 }
