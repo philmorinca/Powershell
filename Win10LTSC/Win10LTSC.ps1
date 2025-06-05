@@ -5,6 +5,9 @@ Set-ExecutionPolicy Bypass -Scope Process
 
 $ISODownloadPath = "C:\Win10LTSC.iso"
 
+Write-Host -ForegroundColor Red "Will reinstall Win10 LTSC. Proceed?"
+Pause
+
 Start-BitsTransfer -Source "https://r2.philmorin.net/Win10LTSC.$((Get-WinSystemLocale).Name).iso" -Destination $ISODownloadPath
 Mount-DiskImage -ImagePath $ISODownloadPath -PassThru
 
@@ -14,9 +17,6 @@ if ($drive) {
     $drive = $drive.Name
 
     Set-Location $drive
-    Write-Host -ForegroundColor Red "Will reinstall Win10 LTSC. Proceed?"
-    Pause
-
 
     Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows NT\CurrentVersion" -Name "EditionID" -Value "EnterpriseS" -WhatIf
     & "$drive\setup.exe" /auto upgrade /compat ignorewarning /EULA accept
