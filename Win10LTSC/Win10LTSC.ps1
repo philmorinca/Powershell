@@ -18,6 +18,6 @@ if ($drive) {
 
     Set-Location $drive
 
-    Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows NT\CurrentVersion" -Name "EditionID" -Value "EnterpriseS" -WhatIf
-    & "$drive\setup.exe" /auto upgrade /compat ignorewarning /EULA accept
+    Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows NT\CurrentVersion" -Name "EditionID" -Value "EnterpriseS" 
+    & .\setup.exe /auto upgrade /compat ignorewarning /EULA accept
 }
