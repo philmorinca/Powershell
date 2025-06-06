@@ -1,4 +1,4 @@
-# iwr https://github.com/philmorinca/Powershell/raw/refs/heads/main/Win10LTSC/Win10LTSC.ps1 | iex
+# iwr https://github.com/philmorinca/Powershell/raw/refs/heads/main/Win10LTSC/Win10LTSC.ps1 -UseBasicParsing | iex
 Clear-Host
 $ErrorActionPreference = 'Stop'
 Set-ExecutionPolicy Bypass -Scope Process
