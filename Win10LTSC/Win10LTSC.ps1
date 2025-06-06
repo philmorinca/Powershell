@@ -7,8 +7,10 @@ $ISODownloadPath = "C:\Win10LTSC.iso"
 
 Write-Host -ForegroundColor Red "Will reinstall Win10 LTSC. Proceed?"
 Pause
+if (!(Test-Path $ISODownloadPath)) {
+    Start-BitsTransfer -Source "https://r2.philmorin.net/Win10LTSC.$((Get-WinSystemLocale).Name).iso" -Destination $ISODownloadPath
+}
 
-Start-BitsTransfer -Source "https://r2.philmorin.net/Win10LTSC.$((Get-WinSystemLocale).Name).iso" -Destination $ISODownloadPath
 Mount-DiskImage -ImagePath $ISODownloadPath -PassThru
 
 $drive = Get-WMIObject Win32_Volume | Where-Object { $_.Label -like 'CES_X64*'}
