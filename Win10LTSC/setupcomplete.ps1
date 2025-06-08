@@ -1,5 +1,5 @@
 $ErrorActionPreference = 'Stop'
-Set-ExecutionPolicy Bypass -Scope Process
+Set-ExecutionPolicy Bypass -Scope Process -Force
 
 Remove-Item "C:\setupcomplete.cmd" -Force -ErrorAction SilentlyContinue
 Remove-Item "C:\Win10LTSC.iso" -Force -ErrorAction SilentlyContinue
