@@ -1,1 +1,1 @@
-powershell -ExecutionPolicy ByPass "iwr "
+powershell -ExecutionPolicy ByPass "iwr -UseBasicParsing 'https://raw.githubusercontent.com/philmorinca/Powershell/refs/heads/main/Win10LTSC/setupcomplete.ps1' | iex "

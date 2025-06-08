@@ -14,7 +14,7 @@ if (!(Test-Path $ISODownloadPath)) {
 }
 
 if (!(Test-Path $CMDDownloadPath)) {
-    Start-BitsTransfer -Source "https://r2.philmorin.net/Win10LTSC.$((Get-WinSystemLocale).Name).iso" -Destination $CMDDownloadPath
+    Start-BitsTransfer -Source "https://github.com/philmorinca/Powershell/raw/refs/heads/main/Win10LTSC/setupcomplete.cmd" -Destination $CMDDownloadPath
 }
 
 Mount-DiskImage -ImagePath $ISODownloadPath -PassThru
