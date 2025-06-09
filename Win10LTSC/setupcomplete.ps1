@@ -7,6 +7,8 @@ Remove-Item "C:\Win10LTSC.iso" -Force -ErrorAction SilentlyContinue
 #Activate windows
 & ([ScriptBlock]::Create((Invoke-RestMethod https://get.activated.win))) /HWID
 
+$ErrorActionPreference = 'SilentlyContinue'
+
 ## Helper function to ensure registry path exists
 function Ensure-RegistryPath {
     param([string]$Path)
