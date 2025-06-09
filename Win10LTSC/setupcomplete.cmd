@@ -1,3 +1,4 @@
+@ECHO OFF
 :: Check privileges 
 net file 1>NUL 2>NUL
 if not '%errorlevel%' == '0' (
