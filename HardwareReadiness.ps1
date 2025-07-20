@@ -1,3 +1,4 @@
+# iwr https://github.com/philmorinca/Powershell/raw/refs/heads/main/HardwareReadiness.ps1 -UseBasicParsing | iex
 #=============================================================================================================================
 #
 # Script Name:     HardwareReadiness.ps1
