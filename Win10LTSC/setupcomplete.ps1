@@ -9,6 +9,10 @@ Remove-Item "C:\Win10LTSC.iso" -Force -ErrorAction SilentlyContinue
 
 $ErrorActionPreference = 'SilentlyContinue'
 
+powercfg /x -hibernate-timeout-ac 0
+powercfg /x -disk-timeout-ac 0
+powercfg /x -standby-timeout-ac 0
+
 ## Helper function to ensure registry path exists
 function Ensure-RegistryPath {
     param([string]$Path)
