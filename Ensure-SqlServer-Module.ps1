@@ -1,3 +1,5 @@
+# iwr https://github.com/philmorinca/Powershell/raw/refs/heads/main/Ensure-SqlServer-Module.ps1 -UseBasicParsing | iex
+#  
 # Ensure TLS 1.2 for PSGallery
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
