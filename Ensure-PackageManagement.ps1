@@ -28,3 +28,12 @@ $null = Get-Module -ListAvailable | Out-Null
 Set-ExecutionPolicy Bypass -Scope Process
 
 Import-Module PackageManagement
+# Installer NuGet sans interaction
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+
+# Trust PSGallery
+Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+
+# Installer PowerShellGet et PackageManagement
+Install-Module PowerShellGet -Force
+
