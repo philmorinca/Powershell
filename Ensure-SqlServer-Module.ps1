@@ -3,14 +3,19 @@
 # Ensure TLS 1.2 for PSGallery
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Set-ExecutionPolicy Bypass -Scope Process
-# Trust PSGallery
-Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+
 if ( -not (Get-Command "Install-PackageProvider"))
 {
     iwr "https://github.com/philmorinca/Powershell/raw/refs/heads/main/Ensure-PackageManagement.ps1" -UseBasicParsing | iex
 }
+
+
+
 # Installer NuGet sans interaction
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+
+# Trust PSGallery
+Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 
 # Installer PowerShellGet et PackageManagement
 Install-Module PowerShellGet -Force
