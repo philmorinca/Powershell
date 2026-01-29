@@ -9,19 +9,7 @@ if ( -not (Get-Command "Install-PackageProvider" -ErrorAction SilentlyContinue))
     iwr "https://github.com/philmorinca/Powershell/raw/refs/heads/main/Ensure-PackageManagement.ps1" -UseBasicParsing | iex
 }
 
-
-
-# Installer NuGet sans interaction
-Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
-
-# Trust PSGallery
-Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-
-# Installer PowerShellGet et PackageManagement
-Install-Module PowerShellGet -Force
-
 Get-Item  "C:\Program File*\Microsoft SQL Server\*\Tools\PowerShell\Modules\sqlps" | Remove-Item -Recurse -Force
-
 
 # Install module silently
 Install-Module -Name SqlServer -Force -AcceptLicense
