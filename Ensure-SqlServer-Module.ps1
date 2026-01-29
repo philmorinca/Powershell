@@ -4,7 +4,7 @@
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Set-ExecutionPolicy Bypass -Scope Process
 
-if ( -not (Get-Command "Install-PackageProvider"))
+if ( -not (Get-Command "Install-PackageProvider" -ErrorAction SilentlyContinue))
 {
     iwr "https://github.com/philmorinca/Powershell/raw/refs/heads/main/Ensure-PackageManagement.ps1" -UseBasicParsing | iex
 }
