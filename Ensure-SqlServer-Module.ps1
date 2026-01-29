@@ -2,7 +2,7 @@
 #  
 # Ensure TLS 1.2 for PSGallery
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-
+Set-ExecutionPolicy Bypass -Scope Process
 # Trust PSGallery
 Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 if ( -not (Get-Command "Install-PackageProvider"))
