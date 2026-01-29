@@ -7,24 +7,13 @@
 Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 if ( -not (Get-Command "Install-PackageProvider"))
 {
-    
+    iwr "https://github.com/philmorinca/Powershell/raw/refs/heads/main/Ensure-PackageManagement.ps1" -UseBasicParsing | iex
 }
 # Installer NuGet sans interaction
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 
 # Installer PowerShellGet et PackageManagement
 Install-Module PowerShellGet -Force
-Install-Module PackageManagement -Force
-
-# Rendre PSGallery de confiance
-Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-
-Write-Host "=== Configuration terminée ==="
-Write-Host "NuGet installé, PSGallery approuvé, aucune invite ne réapparaîtra."
-
-
-# Install NuGet provider silently
-Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 
 Get-Item  "C:\Program File*\Microsoft SQL Server\*\Tools\PowerShell\Modules\sqlps" | Remove-Item -Recurse -Force
 
