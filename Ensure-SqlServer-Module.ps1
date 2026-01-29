@@ -5,47 +5,10 @@
 
 # Trust PSGallery
 Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-
-# ------------------------------------------------------------
-#  Auto‑fix PowerShellGet / NuGet provider (no prompts)
-#  Compatible Windows PowerShell 5.1 + PowerShell 7+
-# ------------------------------------------------------------
-
-Write-Host "=== Vérification de la version PowerShell ==="
-
-$IsPSCore = $PSVersionTable.PSEdition -eq "Core"
-
-if ($IsPSCore) {
-    Write-Host "PowerShell 7 détecté. Configuration via Windows PowerShell 5.1 requise."
-
-    # Trouver Windows PowerShell 5.1
-    $pwsh51 = (Get-Command powershell.exe).Source
-
-    if (-not (Test-Path $pwsh51)) {
-        Write-Host "Impossible de trouver Windows PowerShell 5.1. Abandon."
-        exit 1
-    }
-
-    Write-Host "Lancement de Windows PowerShell 5.1 pour installer NuGet..."
-
-    Start-Process $pwsh51 -Verb RunAs -ArgumentList @"
--NoProfile -ExecutionPolicy Bypass -Command "
-Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force;
-Install-Module PowerShellGet -Force;
-Install-Module PackageManagement -Force;
-"
-"@
-
-    Write-Host "Configuration terminée. Redémarre PowerShell 7."
-    exit
+if ( -not (Get-Command "Install-PackageProvider"))
+{
+    
 }
-
-# ------------------------------------------------------------
-#  Windows PowerShell 5.1 — installation silencieuse
-# ------------------------------------------------------------
-
-Write-Host "Windows PowerShell 5.1 détecté. Installation silencieuse du provider NuGet..."
-
 # Installer NuGet sans interaction
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 
