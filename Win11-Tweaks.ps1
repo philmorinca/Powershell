@@ -1,3 +1,4 @@
+# iwr "https://github.com/philmorinca/Powershell/raw/refs/heads/main/Win11-Tweaks.ps1" -UseBasicParsing | iex
 <# 
   Windows 11 privacy & declutter tweaks
   Save as: Win11-Tweaks.ps1
