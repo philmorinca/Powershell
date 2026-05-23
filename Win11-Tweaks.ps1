@@ -61,16 +61,12 @@ Write-Host "Start menu web/Bing search disabled." -ForegroundColor Green
 # 3. Widgets off              #
 #-----------------------------#
 
-# IMPORTANT: Explorer\Advanced already exists and is protected – do NOT create it
-$advKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
-
-Set-ItemProperty -Path $advKey -Name "TaskbarDa" -Type DWord -Value 0
-
 $dshKey = "HKLM:\SOFTWARE\Policies\Microsoft\Dsh"
 New-Item -Path $dshKey -Force | Out-Null
 Set-ItemProperty -Path $dshKey -Name "AllowNewsAndInterests" -Type DWord -Value 0
 
-Write-Host "Widgets disabled (taskbar + policy)." -ForegroundColor Green
+Write-Host "Widgets disabled (policy)." -ForegroundColor Green
+
 
 #-----------------------------#
 # 4. Start menu Recommended   #
