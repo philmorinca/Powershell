@@ -1,7 +1,5 @@
 <# 
   Windows 11 privacy & declutter tweaks
-  Based on MUO-style recommendations (ads, suggestions, widgets, etc.)
-
   Save as: Win11-Tweaks.ps1
   Run normally; script will self-elevate if needed.
 #>
@@ -35,16 +33,13 @@ Write-Host "Applying Windows 11 tweaks..." -ForegroundColor Cyan
 # 1. Advertising ID & offers  #
 #-----------------------------#
 
-# Disable Advertising ID
 New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Force | Out-Null
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name "Enabled" -Type DWord -Value 0
 
-# Disable tailored experiences with diagnostic data
 New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Privacy" -Force | Out-Null
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Privacy" -Name "TailoredExperiencesWithDiagnosticDataEnabled" -Type DWord -Value 0
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Privacy" -Name "PrivacyExperienceCompleted" -Type DWord -Value 1
 
-# Block websites from accessing language list
 New-Item -Path "HKCU:\Control Panel\International\User Profile" -Force | Out-Null
 Set-ItemProperty -Path "HKCU:\Control Panel\International\User Profile" -Name "HttpAcceptLanguageOptOut" -Type DWord -Value 1
 
@@ -66,12 +61,11 @@ Write-Host "Start menu web/Bing search disabled." -ForegroundColor Green
 # 3. Widgets off              #
 #-----------------------------#
 
-# Taskbar Widgets button (HKCU Explorer\Advanced already exists; don't recreate)
+# IMPORTANT: Explorer\Advanced already exists and is protected – do NOT create it
 $advKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
 
 Set-ItemProperty -Path $advKey -Name "TaskbarDa" -Type DWord -Value 0
 
-# Policy-level disable Widgets
 $dshKey = "HKLM:\SOFTWARE\Policies\Microsoft\Dsh"
 New-Item -Path $dshKey -Force | Out-Null
 Set-ItemProperty -Path $dshKey -Name "AllowNewsAndInterests" -Type DWord -Value 0
@@ -82,13 +76,9 @@ Write-Host "Widgets disabled (taskbar + policy)." -ForegroundColor Green
 # 4. Start menu Recommended   #
 #-----------------------------#
 
-# Recently added apps
 Set-ItemProperty -Path $advKey -Name "Start_TrackProgs" -Type DWord -Value 0
-
-# Recently opened items
 Set-ItemProperty -Path $advKey -Name "Start_TrackDocs" -Type DWord -Value 0
 
-# Suggestions in Start
 $cdmKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
 New-Item -Path $cdmKey -Force | Out-Null
 Set-ItemProperty -Path $cdmKey -Name "SystemPaneSuggestionsEnabled" -Type DWord -Value 0
@@ -99,12 +89,10 @@ Write-Host "Start menu recommendations reduced." -ForegroundColor Green
 # 5. Diagnostic & typing data #
 #-----------------------------#
 
-# Optional diagnostic data (keep at minimum/basic)
 $dataCollKey = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection"
 New-Item -Path $dataCollKey -Force | Out-Null
 Set-ItemProperty -Path $dataCollKey -Name "AllowTelemetry" -Type DWord -Value 1
 
-# Turn off inking & typing personalization
 $tipcKey = "HKCU:\Software\Microsoft\Input\TIPC"
 New-Item -Path $tipcKey -Force | Out-Null
 Set-ItemProperty -Path $tipcKey -Name "Enabled" -Type DWord -Value 0
@@ -118,10 +106,8 @@ Write-Host "Diagnostic and input-related data collection reduced." -ForegroundCo
 $lockKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Lock Screen"
 New-Item -Path $lockKey -Force | Out-Null
 
-# Use Picture instead of Spotlight
 Set-ItemProperty -Path $lockKey -Name "CreativeLockScreenSource" -Type DWord -Value 1
 
-# Disable lock screen fun facts, tips, promos
 Set-ItemProperty -Path $cdmKey -Name "SubscribedContent-338387Enabled" -Type DWord -Value 0
 Set-ItemProperty -Path $cdmKey -Name "SubscribedContent-338388Enabled" -Type DWord -Value 0
 Set-ItemProperty -Path $cdmKey -Name "SubscribedContent-338389Enabled" -Type DWord -Value 0
