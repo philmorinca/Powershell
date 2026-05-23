@@ -3,7 +3,7 @@
   Save as: Win11-Tweaks.ps1
   Run normally; script will self-elevate if needed.
 #>
-
+$ErrorActionPreference = 'Stop'
 #-----------------------------#
 # Self-elevate if needed      #
 #-----------------------------#
