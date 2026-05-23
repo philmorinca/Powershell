@@ -5,18 +5,21 @@
   Run normally; script will self-elevate if needed.
 #>
 $ErrorActionPreference = 'Stop'
-#-----------------------------#
-# Self-elevate if needed      #
-#-----------------------------#
+# URL of the script (update if you rename it)
+$ScriptURL = "https://raw.githubusercontent.com/philmorinca/Powershell/refs/heads/main/Win11-Tweaks.ps1"
+
+# Self-elevate if needed
 if (-not ([Security.Principal.WindowsPrincipal] `
     [Security.Principal.WindowsIdentity]::GetCurrent()
     ).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
 
     Write-Host "Requesting administrator rights..." -ForegroundColor Yellow
 
+    $cmd = "iwr `"$ScriptURL`" -UseBasicParsing | iex"
+
     $psi = New-Object System.Diagnostics.ProcessStartInfo
     $psi.FileName  = "powershell.exe"
-    $psi.Arguments = "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`""
+    $psi.Arguments = "-NoProfile -ExecutionPolicy Bypass -Command $cmd"
     $psi.Verb      = "runas"
 
     try {
