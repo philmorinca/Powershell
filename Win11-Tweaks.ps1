@@ -57,6 +57,11 @@ Write-Host "Start menu web/Bing search disabled." -ForegroundColor Green
 #-------------------------------------------#
 # 3. Disable Widgets (taskbar & backend)   #
 #-------------------------------------------#
+# Restart Explorer to release registry locks
+Write-Host "Restarting Explorer to release registry locks..."
+Get-Process explorer -ErrorAction SilentlyContinue | Stop-Process -Force
+Start-Process explorer.exe
+Start-Sleep -Seconds 2
 
 # Hide Widgets button on taskbar
 # HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
