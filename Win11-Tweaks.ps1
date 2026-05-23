@@ -1,3 +1,4 @@
+# iwr "https://github.com/philmorinca/Powershell/raw/refs/heads/main/Win11-Tweaks.ps1" | iex
 <# 
   Windows 11 privacy & declutter tweaks
   Based on MUO article: "I turned off these Windows 11 features that ship on by default…"
