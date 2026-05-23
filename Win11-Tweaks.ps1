@@ -15,7 +15,7 @@ if (-not ([Security.Principal.WindowsPrincipal] `
 
     Write-Host "Requesting administrator rights..." -ForegroundColor Yellow
 
-    $cmd = "iwr `"$ScriptURL`" -UseBasicParsing | iex"
+    $cmd = "iwr `"$ScriptURL`" -UseBasicParsing | iex; pause"
 
     $psi = New-Object System.Diagnostics.ProcessStartInfo
     $psi.FileName  = "powershell.exe"
