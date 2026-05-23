@@ -43,6 +43,20 @@ Write-Host "Advertising ID and recommendation-related settings adjusted." -Foreg
 #-------------------------------------------#
 # 2. Disable Bing web search in Start      #
 #-------------------------------------------#
+# Ensure Explorer registry keys are writable
+$advKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+
+try {
+    New-Item -Path $advKey -Force -ErrorAction Stop | Out-Null
+} catch {
+    Write-Host "Explorer is locking registry keys — restarting Explorer..."
+    Get-Process explorer -ErrorAction SilentlyContinue | Stop-Process -Force
+    Start-Process explorer.exe
+    Start-Sleep -Seconds 2
+
+    # Try again
+    New-Item -Path $advKey -Force | Out-Null
+}
 
 # HKCU\Software\Policies\Microsoft\Windows\Explorer
 $explorerPolicyKey = "HKCU:\Software\Policies\Microsoft\Windows\Explorer"
@@ -57,11 +71,6 @@ Write-Host "Start menu web/Bing search disabled." -ForegroundColor Green
 #-------------------------------------------#
 # 3. Disable Widgets (taskbar & backend)   #
 #-------------------------------------------#
-# Restart Explorer to release registry locks
-Write-Host "Restarting Explorer to release registry locks..."
-Get-Process explorer -ErrorAction SilentlyContinue | Stop-Process -Force
-Start-Process explorer.exe
-Start-Sleep -Seconds 2
 
 # Hide Widgets button on taskbar
 # HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
