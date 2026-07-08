@@ -1,7 +1,7 @@
 # iwr https://github.com/philmorinca/Powershell/raw/refs/heads/main/Test-DNS.ps1 -UseBasicParsing | iex
 Write-Host "=== TEST LATENCE DNS ==="
  
-$Hostname = "perdu.com"
+$Hostname = "patate.maison.philmorin.net"
 $Iterations = 10
 $Results = @()
  
