@@ -1,3 +1,4 @@
+# iwr https://github.com/philmorinca/Powershell/raw/refs/heads/main/StayAwake.ps1 -UseBasicParsing | iex
 Write-Host "=== TEST LATENCE DNS ==="
  
 $Hostname = "perdu.com"
