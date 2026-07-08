@@ -1,7 +1,9 @@
 # iwr https://github.com/philmorinca/Powershell/raw/refs/heads/main/Test-DNS.ps1 -UseBasicParsing | iex
 Write-Host "=== TEST LATENCE DNS ==="
  
-$Hostname = "patate.maison.philmorin.net"
+# Génère un sous-domaine aléatoire (8 premiers caractères d'un GUID)
+$Subdomain = [guid]::NewGuid().ToString().Substring(0,8)
+$Hostname = "$Subdomain.maison.philmorin.net"
 $Iterations = 10
 $Results = @()
  
