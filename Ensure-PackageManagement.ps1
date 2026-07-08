@@ -1,4 +1,4 @@
-# iwr "https://github.com/philmorinca/Powershell/raw/refs/heads/main/Ensure-PackageManagement.ps1" -UseBasicParsing | iex
+# iwr "https://raw.githubusercontent.com/philmorinca/Powershell/refs/heads/main/Ensure-PackageManagement.ps1?t=$(Get-Date -UFormat %s)" -UseBasicParsing | iex
 # URL of the package
 $Url = "https://cdn.powershellgallery.com/packages/packagemanagement.1.4.8.1.nupkg"
 

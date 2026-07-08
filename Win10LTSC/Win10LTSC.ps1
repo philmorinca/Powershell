@@ -1,4 +1,4 @@
-# iwr https://github.com/philmorinca/Powershell/raw/refs/heads/main/Win10LTSC/Win10LTSC.ps1 -UseBasicParsing | iex
+# iwr https://raw.githubusercontent.com/philmorinca/Powershell/refs/heads/main/Win10LTSC/Win10LTSC.ps1?t=$(Get-Date -UFormat %s) -UseBasicParsing | iex
 Clear-Host
 $ErrorActionPreference = 'Stop'
 Set-ExecutionPolicy Bypass -Scope Process
@@ -14,7 +14,7 @@ if (!(Test-Path $ISODownloadPath)) {
 }
 
 if (!(Test-Path $CMDDownloadPath)) {
-    Start-BitsTransfer -Source "https://github.com/philmorinca/Powershell/raw/refs/heads/main/Win10LTSC/setupcomplete.cmd" -Destination $CMDDownloadPath
+    Start-BitsTransfer -Source "https://raw.githubusercontent.com/philmorinca/Powershell/refs/heads/main/Win10LTSC/setupcomplete.cmd?t=$(Get-Date -UFormat %s)" -Destination $CMDDownloadPath
 }
 
 Mount-DiskImage -ImagePath $ISODownloadPath -PassThru

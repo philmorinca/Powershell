@@ -11,4 +11,4 @@ if not '%errorlevel%' == '0' (
 cd /d %1
 
 :: Actual work
-powershell -ExecutionPolicy ByPass "iwr -UseBasicParsing 'https://raw.githubusercontent.com/philmorinca/Powershell/refs/heads/main/Win10LTSC/setupcomplete.ps1' | iex "
+powershell -ExecutionPolicy ByPass "iwr -UseBasicParsing \"https://raw.githubusercontent.com/philmorinca/Powershell/refs/heads/main/Win10LTSC/setupcomplete.ps1?t=$(Get-Date -UFormat %s)\" | iex "

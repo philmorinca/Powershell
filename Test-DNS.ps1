@@ -1,4 +1,4 @@
-# iwr https://github.com/philmorinca/Powershell/raw/refs/heads/main/Test-DNS.ps1 -UseBasicParsing | iex
+# iwr "https://raw.githubusercontent.com/philmorinca/Powershell/refs/heads/main/Test-DNS.ps1?t=$(Get-Date -UFormat %s)" -UseBasicParsing | iex
 Write-Host "=== TEST LATENCE DNS ==="
  
 # Génère un sous-domaine aléatoire (8 premiers caractères d'un GUID)
